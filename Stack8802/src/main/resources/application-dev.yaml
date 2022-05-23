@@ -1,0 +1,28 @@
+server:
+  port: 8802
+spring:
+  application:
+    name: stack
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+    url: jdbc:mysql://127.0.0.1:3306/seata?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alibaba:
+      seata:
+        tx-service-group: mygroup   # 事务组, 随便写
+seata:
+  tx-service-group: mygroup # 事务组名称，要和服务端对应
+  service:
+    vgroup-mapping:
+      mygroup: default # key是事务组名称 value要和服务端的机房名称保持一致
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
